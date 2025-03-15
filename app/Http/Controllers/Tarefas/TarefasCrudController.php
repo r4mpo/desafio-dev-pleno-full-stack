@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tarefas;
 
 use Illuminate\Http\Request;
 use App\Interfaces\crudTemplate;
-use App\DTO\Default\ResponseDTO;
+use App\DTO\Padrao\ResponseDTO;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Services\Tarefas\ExcluirService;

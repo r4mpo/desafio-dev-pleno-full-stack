@@ -5,13 +5,13 @@ namespace App\Services\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use App\Services\DefaultService;
-use App\DTO\Default\ResponseDTO;
+use App\Services\PadraoService;
+use App\DTO\Padrao\ResponseDTO;
 use App\Repositories\UsersRepository;
 use App\ValueObjects\Auth\RegistrarAuthVO;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RegistrarService extends DefaultService
+class RegistrarService extends PadraoService
 {
     protected UsersRepository $users_repository;
     protected string $mensagem_nao_encontrada = '';

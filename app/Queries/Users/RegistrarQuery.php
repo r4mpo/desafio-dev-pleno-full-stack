@@ -1,9 +1,9 @@
 <?php
 namespace App\Queries\Users;
 
-use App\Queries\DefaultQuery;
+use App\Queries\PadraoQuery;
 
-class RegistrarQuery extends DefaultQuery
+class RegistrarQuery extends PadraoQuery
 {
     public static function getQuery(): string
     {

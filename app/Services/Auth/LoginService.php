@@ -2,11 +2,11 @@
 
 namespace App\Services\Auth;
 
-use App\DTO\Default\ResponseDTO;
-use App\Services\DefaultService;
+use App\DTO\Padrao\ResponseDTO;
+use App\Services\PadraoService;
 use App\ValueObjects\Auth\LoginAuthVO;
 
-class LoginService extends DefaultService
+class LoginService extends PadraoService
 {
     protected string $mensagem_nao_encontrada = 'Credenciais e/ou sessões inválidas. Tente novamente.';
 
@@ -29,7 +29,7 @@ class LoginService extends DefaultService
         }
     }
 
-    private function valida_tokens_credenciais($credenciais): array|bool
+    private function valida_tokens_credenciais($credenciais)
     {
         if (!$token = auth()->attempt($credenciais)) {
             return false;

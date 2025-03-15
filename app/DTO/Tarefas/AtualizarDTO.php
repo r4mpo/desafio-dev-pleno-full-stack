@@ -2,7 +2,7 @@
 
 namespace App\DTO\Tarefas;
 
-use App\DTO\Default\RequestDTO;
+use App\DTO\Padrao\RequestDTO;
 
 class AtualizarDTO extends RequestDTO
 {

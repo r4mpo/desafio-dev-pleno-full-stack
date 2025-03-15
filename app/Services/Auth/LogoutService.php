@@ -2,10 +2,10 @@
 
 namespace App\Services\Auth;
 
-use App\DTO\Default\ResponseDTO;
-use App\Services\DefaultService;
+use App\DTO\Padrao\ResponseDTO;
+use App\Services\PadraoService;
 
-class LogoutService extends DefaultService
+class LogoutService extends PadraoService
 {
     protected string $mensagem_nao_encontrada = 'Erro ao desconectar usuário. Tente novamente.';
 

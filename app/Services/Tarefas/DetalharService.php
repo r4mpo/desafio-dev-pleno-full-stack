@@ -2,11 +2,11 @@
 
 namespace App\Services\Tarefas;
 
-use App\DTO\Default\ResponseDTO;
+use App\DTO\Padrao\ResponseDTO;
 use App\Repositories\TarefasRepository;
-use App\Services\DefaultService;
+use App\Services\PadraoService;
 
-class DetalharService extends DefaultService
+class DetalharService extends PadraoService
 {
     protected TarefasRepository $tarefas_repository;
     protected string $mensagem_nao_encontrada = 'Tarefas não foram encontradas. Tente novamente.';

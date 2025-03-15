@@ -34,7 +34,7 @@ class TarefasRepository
         return $this->buscar_db($id)->update($dados);
     }
 
-    public function excluir_db(int $id): bool|null
+    public function excluir_db(int $id): bool
     {
         return $this->buscar_db($id)->delete();
     }

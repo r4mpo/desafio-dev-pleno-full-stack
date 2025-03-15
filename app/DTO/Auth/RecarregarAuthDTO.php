@@ -2,7 +2,7 @@
 
 namespace App\DTO\Auth;
 
-use App\DTO\Default\RequestDTO;
+use App\DTO\Padrao\RequestDTO;
 
 class RecarregarAuthDTO extends RequestDTO
 {

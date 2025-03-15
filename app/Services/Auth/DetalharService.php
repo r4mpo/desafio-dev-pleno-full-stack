@@ -2,10 +2,10 @@
 
 namespace App\Services\Auth;
 
-use App\DTO\Default\ResponseDTO;
-use App\Services\DefaultService;
+use App\DTO\Padrao\ResponseDTO;
+use App\Services\PadraoService;
 
-class DetalharService extends DefaultService
+class DetalharService extends PadraoService
 {
     protected string $mensagem_nao_encontrada = 'Credenciais e/ou sessões inválidas. Tente novamente.';
 

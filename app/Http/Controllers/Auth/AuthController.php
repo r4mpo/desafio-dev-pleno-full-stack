@@ -7,7 +7,7 @@ use App\Services\Auth\DetalharService;
 use App\Services\Auth\LogoutService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\DTO\Default\ResponseDTO;
+use App\DTO\Padrao\ResponseDTO;
 use App\Services\Auth\RegistrarService;
 use App\Services\Auth\LoginService;
 
@@ -45,12 +45,12 @@ class AuthController extends Controller
     public function detalhar(): JsonResponse
     {
         $this->resposta_dto = $this->detalhar_service->detalhar();
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 
     public function logout(): JsonResponse
     {
         $this->resposta_dto = $this->logout_service->logout();
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 }

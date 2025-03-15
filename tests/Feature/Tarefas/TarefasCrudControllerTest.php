@@ -1,9 +1,11 @@
 <?php
 
-namespace Tests\Unit\Controllers\Tarefas;
+namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
+use App\Services\Auth\RegistrarService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class TarefasCrudControllerTest extends TestCase

@@ -4,12 +4,11 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\DTO\Default\ResponseDTO;
+use App\DTO\Padrao\ResponseDTO;
 
 class LoggingHelper
 {
-    public static function log_geral(Request|array $requisicao, ResponseDTO $response): void
+    public static function log_geral($requisicao, ResponseDTO $response): void
     {
         Log::info(
             "Requisição:",
