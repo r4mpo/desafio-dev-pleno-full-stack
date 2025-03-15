@@ -18,7 +18,7 @@ class TarefasRepository
         return Tarefa::findOrFail($id);
     }
 
-    public function consultar_db(null|string $status): array
+    public function consultar_db(string $status = null): array
     {
         $query = Tarefa::query();
 

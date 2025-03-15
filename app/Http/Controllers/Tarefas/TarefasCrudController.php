@@ -47,24 +47,24 @@ class TarefasCrudController extends Controller implements crudTemplate
     public function store(Request $request): JsonResponse
     {
         $this->resposta_dto = $this->registrar_service->registrar($request->all());
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 
     public function show(string $id): JsonResponse
     {
         $this->resposta_dto = $this->detalhar_service->detalhar($id);
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 
     public function update(Request $request, string $id): JsonResponse
     {
         $this->resposta_dto = $this->atualizar_service->atualizar($request->all(), $id);
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 
     public function destroy(string $id): JsonResponse
     {
         $this->resposta_dto = $this->excluir_service->excluir($id);
-        return $this->resposta(resposta_dto: $this->resposta_dto);
+        return $this->resposta($this->resposta_dto);
     }
 }
