@@ -11,7 +11,7 @@ O desenvolvimento seguiu boas práticas de arquitetura, utilizando o  **SOLID** 
 ### **🔹 Backend:**
 
 * PHP 7.4.33
-* Laravel 10.x
+* Laravel 8.83.29
 * PostgreSQL
 * JWT para autenticação
 * Arquitetura SOLID
