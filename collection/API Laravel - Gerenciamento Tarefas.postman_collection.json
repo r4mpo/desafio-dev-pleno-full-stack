@@ -616,12 +616,12 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{base_url}}usuario/detalhes",
+							"raw": "{{base_url}}usuario/detalhar",
 							"host": [
 								"{{base_url}}usuario"
 							],
 							"path": [
-								"detalhes"
+								"detalhar"
 							]
 						}
 					},
@@ -642,12 +642,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhes",
+									"raw": "{{base_url}}usuario/detalhar",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhes"
+										"detalhar"
 									]
 								}
 							},
@@ -707,12 +707,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhes",
+									"raw": "{{base_url}}usuario/detalhar",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhes"
+										"detalhar"
 									]
 								}
 							},
@@ -772,12 +772,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhes",
+									"raw": "{{base_url}}usuario/detalhar",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhes"
+										"detalhar"
 									]
 								}
 							},

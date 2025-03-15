@@ -11,4 +11,4 @@ Route::controller(AuthController::class)->prefix('usuario')->group(function () {
     Route::get('logout', 'logout')->middleware('token');
 });
 
-Route::resource('tarefas', TarefasCrudController::class);
+Route::resource('tarefas', TarefasCrudController::class)->middleware('token');;

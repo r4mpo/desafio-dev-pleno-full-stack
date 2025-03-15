@@ -4,7 +4,7 @@ namespace App\Swagger;
 
 /**
  * @OA\Info(
- *     title="API Laravel - Base Perfeita",
+ *     title="API Laravel - Gerenciamento Tarefas",
  *     version="1.0.0"
  * )
  *
