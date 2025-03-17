@@ -4,15 +4,16 @@
             <div class="col-md-6 offset-md-3">
                 <div class="panel panel-login">
                     <div class="panel-heading">
-                        <img src="../../../public/images/DeMaria_sem_sombra.png" width="100" height="100" alt="Logo empresa DeMaria">
+                        <img src="../../../public/images/DeMaria_sem_sombra.png" width="100" height="100"
+                            alt="Logo empresa DeMaria">
                         <div class="row">
                             <div class="col-xs-6">
-                                <a href="#" :class="{ active: isLoginActive }" @click.prevent="showLogin">
+                                <a href="#" :class="{ ativo: loginAtivo }" @click.prevent="mostrarLogin">
                                     Entrar
                                 </a>
                             </div>
                             <div class="col-xs-6">
-                                <a href="#" :class="{ active: !isLoginActive }" @click.prevent="showRegister">
+                                <a href="#" :class="{ ativo: !loginAtivo }" @click.prevent="mostrarCadastro">
                                     Cadastrar-se
                                 </a>
                             </div>
@@ -22,40 +23,52 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                <!-- Login Form -->
-                                <form v-if="isLoginActive" @submit.prevent="submitLogin">
-                                    <div class="form-group" :class="{ 'is-invalid': !validEmail }">
-                                        <input type="email" v-model="login.email" @blur="validateEmail" class="form-control" placeholder="E-mail">
-                                        <small v-if="!validEmail" class="text-danger">E-mail inválido</small>
+                                <!-- Formulário de Login -->
+                                <form v-if="loginAtivo" @submit.prevent="enviarLogin">
+                                    <div class="form-group" :class="{ 'is-invalid': !emailValido }">
+                                        <input type="email" v-model="login.email" @blur="validarEmail"
+                                            class="form-control" placeholder="E-mail">
+                                        <small v-if="!emailValido" class="text-danger">E-mail inválido</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" v-model="login.password" class="form-control" placeholder="Senha">
+                                        <input type="password" v-model="login.senha" class="form-control"
+                                            placeholder="Senha">
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" class="form-control btn btn-login" value="Entrar" :disabled="!isLoginValid">
+                                        <input type="submit" class="form-control btn btn-login" value="Entrar"
+                                            :disabled="!loginValido">
                                     </div>
                                 </form>
 
-                                <!-- Register Form -->
-                                <form v-if="!isLoginActive" @submit.prevent="submitRegister">
-                                    <div class="form-group" :class="{ 'is-invalid': !validName }">
-                                        <input type="text" v-model="register.name" @blur="validateName" class="form-control" placeholder="Nome">
-                                        <small v-if="!validName" class="text-danger">Nome deve ter pelo menos 3 caracteres</small>
+                                <!-- Formulário de Cadastro -->
+                                <form v-if="!loginAtivo" @submit.prevent="enviarCadastro">
+                                    <div class="form-group" :class="{ 'is-invalid': !nomeValido }">
+                                        <input type="text" v-model="cadastro.nome" @blur="validarNome"
+                                            class="form-control" placeholder="Nome">
+                                        <small v-if="!nomeValido" class="text-danger">Nome deve ter pelo menos 3
+                                            caracteres</small>
                                     </div>
-                                    <div class="form-group" :class="{ 'is-invalid': !validEmail }">
-                                        <input type="email" v-model="register.email" @blur="validateEmail" class="form-control" placeholder="E-mail">
-                                        <small v-if="!validEmail" class="text-danger">E-mail inválido</small>
+                                    <div class="form-group" :class="{ 'is-invalid': !emailValido }">
+                                        <input type="email" v-model="cadastro.email" @blur="validarEmail"
+                                            class="form-control" placeholder="E-mail">
+                                        <small v-if="!emailValido" class="text-danger">E-mail inválido</small>
                                     </div>
-                                    <div class="form-group" :class="{ 'is-invalid': !validPassword }">
-                                        <input type="password" v-model="register.password" @blur="validatePassword" class="form-control" placeholder="Senha">
-                                        <small v-if="!validPassword" class="text-danger">Senha deve ter pelo menos 6 caracteres</small>
+                                    <div class="form-group" :class="{ 'is-invalid': !senhaValida }">
+                                        <input type="password" v-model="cadastro.senha" @blur="validarSenha"
+                                            class="form-control" placeholder="Senha">
+                                        <small v-if="!senhaValida" class="text-danger">Senha deve ter pelo menos 6
+                                            caracteres</small>
                                     </div>
-                                    <div class="form-group" :class="{ 'is-invalid': !validConfirmPassword }">
-                                        <input type="password" v-model="register.confirmPassword" @blur="validateConfirmPassword" class="form-control" placeholder="Confirmar senha">
-                                        <small v-if="!validConfirmPassword" class="text-danger">As senhas não coincidem</small>
+                                    <div class="form-group" :class="{ 'is-invalid': !confirmacaoSenhaValida }">
+                                        <input type="password" v-model="cadastro.confirmacaoSenha"
+                                            @blur="validarConfirmacaoSenha" class="form-control"
+                                            placeholder="Confirmar senha">
+                                        <small v-if="!confirmacaoSenhaValida" class="text-danger">As senhas não
+                                            coincidem</small>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" class="form-control btn btn-register" value="Cadastrar" :disabled="!isRegisterValid">
+                                        <input type="submit" class="form-control btn btn-registrar" value="Cadastrar"
+                                            :disabled="!cadastroValido">
                                     </div>
                                 </form>
                             </div>
@@ -68,52 +81,74 @@
 </template>
 
 <script>
+import { login, registrar } from '../helpers/axios';
+
 export default {
     name: "Login",
     data() {
         return {
-            isLoginActive: true,
-            login: { email: '', password: '' },
-            register: { name: '', email: '', password: '', confirmPassword: '' },
-            validEmail: true,
-            validName: true,
-            validPassword: true,
-            validConfirmPassword: true
+            loginAtivo: true,
+            login: { email: '', senha: '' },
+            cadastro: { nome: '', email: '', senha: '', confirmacaoSenha: '' },
+            emailValido: true,
+            nomeValido: true,
+            senhaValida: true,
+            confirmacaoSenhaValida: true
         };
     },
     computed: {
-        isLoginValid() {
-            return this.login.email !== '' && this.login.password !== '';
+        loginValido() {
+            return this.login.email && this.login.senha;
         },
-        isRegisterValid() {
-            return this.validName && this.validEmail && this.validPassword && this.validConfirmPassword;
+        cadastroValido() {
+            return this.nomeValido && this.emailValido && this.senhaValida && this.confirmacaoSenhaValida;
         }
     },
     methods: {
-        showLogin() {
-            this.isLoginActive = true;
+        mostrarLogin() {
+            this.loginAtivo = true;
         },
-        showRegister() {
-            this.isLoginActive = false;
+        mostrarCadastro() {
+            this.loginAtivo = false;
         },
-        validateEmail() {
-            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            this.validEmail = regex.test(this.register.email || this.login.email);
+        validarEmail() {
+            const email = this.loginAtivo ? this.login.email : this.cadastro.email;
+            const regex = /^[^\s@]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})?$/;
+            this.emailValido = regex.test(email);
         },
-        validateName() {
-            this.validName = this.register.name.length >= 3;
+        validarNome() {
+            this.nomeValido = this.cadastro.nome.length >= 3;
         },
-        validatePassword() {
-            this.validPassword = this.register.password.length >= 6;
+        validarSenha() {
+            this.senhaValida = this.cadastro.senha.length >= 6;
         },
-        validateConfirmPassword() {
-            this.validConfirmPassword = this.register.password === this.register.confirmPassword;
+        validarConfirmacaoSenha() {
+            this.confirmacaoSenhaValida = this.cadastro.senha === this.cadastro.confirmacaoSenha;
         },
-        submitLogin() {
-            alert('Login enviado!');
+        exibirUmaMensagemPersonalizada(mensagem, texto, icone) {
+            Swal.fire({
+                title: mensagem,
+                text: texto,
+                icon: icone
+            });
         },
-        submitRegister() {
-            alert('Cadastro enviado!');
+        async enviarLogin() {
+            try {
+                let respostaLogin = await login(this.login.email, this.login.senha);
+                sessionStorage.setItem('token', respostaLogin.resposta.token);
+                this.$router.push('/home');
+            } catch (erro) {
+                this.exibirUmaMensagemPersonalizada('Ops!', 'Usuário ou senha inválidos, tente novamente!', 'error');
+            }
+        },
+        async enviarCadastro() {
+            try {
+                let respostaLogin = await registrar(this.cadastro.nome, this.cadastro.email, this.cadastro.senha);
+                sessionStorage.setItem('token', respostaLogin.resposta.token);
+                this.$router.push('/home');
+            } catch (erro) {
+                this.exibirUmaMensagemPersonalizada('Ops!', 'Houve um problema ao registrar usuário, tente novamente!', 'error');
+            }
         }
     }
 };
@@ -123,6 +158,7 @@ export default {
 .is-invalid input {
     border-color: red !important;
 }
+
 .is-invalid small {
     display: block;
 }
@@ -222,7 +258,7 @@ body {
     color: #666;
 }
 
-.btn-register {
+.btn-registrar {
     background-color: #1CB94E;
     outline: none;
     color: #fff;
@@ -234,8 +270,8 @@ body {
     border-color: #1CB94A;
 }
 
-.btn-register:hover,
-.btn-register:focus {
+.btn-registrar:hover,
+.btn-registrar:focus {
     color: #fff;
     background-color: #1CA347;
     border-color: #1CA347;

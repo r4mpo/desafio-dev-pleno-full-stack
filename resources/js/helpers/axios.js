@@ -31,7 +31,7 @@ export function login(email, password) {
     return request('post', 'usuario/login', { email, password });
 }
 
-export function register(name, email, password) {
+export function registrar(name, email, password) {
     return request('post', 'usuario/registrar', { name, email, password });
 }
 
