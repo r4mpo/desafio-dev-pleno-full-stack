@@ -37,7 +37,7 @@
 import $ from 'jquery';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
-import { getDados } from '../helpers/axios';
+import { getDados, postDados } from '../helpers/axios';
 
 export default {
     name: "Home",
@@ -83,16 +83,82 @@ export default {
             }
         },
         adicionarRegistro() {
-            this.exibirMensagem('Info', 'Adicionar novo registro em breve!', 'info');
+            Swal.fire({
+                title: 'Adicionar Nova Tarefa',
+                html: `
+                    <input id="titulo" class="swal2-input" placeholder="Título da Tarefa">
+                    <select id="status" class="swal2-input">
+                        <option value="false">Pendente</option>
+                        <option value="true">Finalizada</option>
+                    </select>
+                `,
+                focusConfirm: false,
+                preConfirm: () => {
+                    const titulo = document.getElementById('titulo').value;
+                    const status = document.getElementById('status').value === 'true';
+                    if (!titulo) {
+                        Swal.showValidationMessage('O título é obrigatório');
+                    } else {
+                        this.adicionarTarefa(titulo, status);
+                    }
+                }
+            });
+        },
+        async adicionarTarefa(titulo, status) {
+            const novaTarefa = {
+                titulo,
+                status
+            };
+            const respostaTarefa = await postDados('tarefas', novaTarefa);
+            this.dados.push(respostaTarefa.resposta); // Adiciona a nova tarefa no array 'dados'
+            this.atualizarTabela();
+            this.exibirMensagem('Sucesso', 'Tarefa adicionada com sucesso!', 'success');
         },
         editarRegistro(item) {
-            this.exibirMensagem('Editar', `Editando: ${item.titulo}`, 'info');
+            Swal.fire({
+                title: 'Editar Tarefa',
+                html: `
+                    <input id="titulo" class="swal2-input" value="${item.titulo}" placeholder="Título da Tarefa">
+                    <select id="status" class="swal2-input">
+                        <option value="false" ${item.status ? '' : 'selected'}>Pendente</option>
+                        <option value="true" ${item.status ? 'selected' : ''}>Finalizada</option>
+                    </select>
+                `,
+                focusConfirm: false,
+                preConfirm: () => {
+                    const titulo = document.getElementById('titulo').value;
+                    const status = document.getElementById('status').value === 'true';
+                    if (!titulo) {
+                        Swal.showValidationMessage('O título é obrigatório');
+                    } else {
+                        this.atualizarTarefa(item.id, titulo, status);
+                    }
+                }
+            });
+        },
+        atualizarTarefa(id, titulo, status) {
+            const tarefa = this.dados.find(item => item.id === id);
+            if (tarefa) {
+                tarefa.titulo = titulo;
+                tarefa.status = status;
+                this.atualizarTabela();
+                this.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
+            }
         },
         async excluirRegistro(id) {
-            if (confirm("Tem certeza que deseja excluir este registro?")) {
+            const confirmacao = await Swal.fire({
+                title: 'Tem certeza?',
+                text: "Essa ação não pode ser desfeita.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            });
+
+            if (confirmacao.isConfirmed) {
                 this.dados = this.dados.filter(item => item.id !== id);
                 this.atualizarTabela();
-                this.exibirMensagem('Sucesso', 'Registro excluído com sucesso!', 'success');
+                Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
             }
         },
         alterarStatus(item) {

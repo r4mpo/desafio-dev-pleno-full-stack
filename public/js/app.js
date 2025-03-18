@@ -2227,29 +2227,105 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       }))();
     },
     adicionarRegistro: function adicionarRegistro() {
-      this.exibirMensagem('Info', 'Adicionar novo registro em breve!', 'info');
-    },
-    editarRegistro: function editarRegistro(item) {
-      this.exibirMensagem('Editar', "Editando: ".concat(item.titulo), 'info');
-    },
-    excluirRegistro: function excluirRegistro(id) {
       var _this3 = this;
+      Swal.fire({
+        title: 'Adicionar Nova Tarefa',
+        html: "\n                    <input id=\"titulo\" class=\"swal2-input\" placeholder=\"T\xEDtulo da Tarefa\">\n                    <select id=\"status\" class=\"swal2-input\">\n                        <option value=\"false\">Pendente</option>\n                        <option value=\"true\">Finalizada</option>\n                    </select>\n                ",
+        focusConfirm: false,
+        preConfirm: function preConfirm() {
+          var titulo = document.getElementById('titulo').value;
+          var status = document.getElementById('status').value === 'true';
+          if (!titulo) {
+            Swal.showValidationMessage('O título é obrigatório');
+          } else {
+            _this3.adicionarTarefa(titulo, status);
+          }
+        }
+      });
+    },
+    adicionarTarefa: function adicionarTarefa(titulo, status) {
+      var _this4 = this;
       return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var novaTarefa, respostaTarefa;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              if (confirm("Tem certeza que deseja excluir este registro?")) {
-                _this3.dados = _this3.dados.filter(function (item) {
-                  return item.id !== id;
-                });
-                _this3.atualizarTabela();
-                _this3.exibirMensagem('Sucesso', 'Registro excluído com sucesso!', 'success');
-              }
-            case 1:
+              novaTarefa = {
+                titulo: titulo,
+                status: status
+              };
+              _context3.next = 3;
+              return (0,_helpers_axios__WEBPACK_IMPORTED_MODULE_3__.postDados)('tarefas', novaTarefa);
+            case 3:
+              respostaTarefa = _context3.sent;
+              _this4.dados.push(respostaTarefa.resposta); // Adiciona a nova tarefa no array 'dados'
+              _this4.atualizarTabela();
+              _this4.exibirMensagem('Sucesso', 'Tarefa adicionada com sucesso!', 'success');
+            case 7:
             case "end":
               return _context3.stop();
           }
         }, _callee3);
+      }))();
+    },
+    editarRegistro: function editarRegistro(item) {
+      var _this5 = this;
+      Swal.fire({
+        title: 'Editar Tarefa',
+        html: "\n                    <input id=\"titulo\" class=\"swal2-input\" value=\"".concat(item.titulo, "\" placeholder=\"T\xEDtulo da Tarefa\">\n                    <select id=\"status\" class=\"swal2-input\">\n                        <option value=\"false\" ").concat(item.status ? '' : 'selected', ">Pendente</option>\n                        <option value=\"true\" ").concat(item.status ? 'selected' : '', ">Finalizada</option>\n                    </select>\n                "),
+        focusConfirm: false,
+        preConfirm: function preConfirm() {
+          var titulo = document.getElementById('titulo').value;
+          var status = document.getElementById('status').value === 'true';
+          if (!titulo) {
+            Swal.showValidationMessage('O título é obrigatório');
+          } else {
+            _this5.atualizarTarefa(item.id, titulo, status);
+          }
+        }
+      });
+    },
+    atualizarTarefa: function atualizarTarefa(id, titulo, status) {
+      var tarefa = this.dados.find(function (item) {
+        return item.id === id;
+      });
+      if (tarefa) {
+        tarefa.titulo = titulo;
+        tarefa.status = status;
+        this.atualizarTabela();
+        this.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
+      }
+    },
+    excluirRegistro: function excluirRegistro(id) {
+      var _this6 = this;
+      return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var confirmacao;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return Swal.fire({
+                title: 'Tem certeza?',
+                text: "Essa ação não pode ser desfeita.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+              });
+            case 2:
+              confirmacao = _context4.sent;
+              if (confirmacao.isConfirmed) {
+                _this6.dados = _this6.dados.filter(function (item) {
+                  return item.id !== id;
+                });
+                _this6.atualizarTabela();
+                Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
+              }
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4);
       }))();
     },
     alterarStatus: function alterarStatus(item) {
@@ -2257,12 +2333,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       this.atualizarTabela();
     },
     atualizarTabela: function atualizarTabela() {
-      var _this4 = this;
+      var _this7 = this;
       this.$nextTick(function () {
-        if (_this4.tabela) {
-          _this4.tabela.destroy();
+        if (_this7.tabela) {
+          _this7.tabela.destroy();
         }
-        _this4.tabela = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabela').DataTable({
+        _this7.tabela = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabela').DataTable({
           language: {
             "lengthMenu": "Mostrar _MENU_ registros por página",
             "zeroRecords": "Nenhum registro encontrado",
