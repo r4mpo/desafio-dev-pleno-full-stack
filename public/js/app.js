@@ -2262,9 +2262,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 3:
               respostaTarefa = _context3.sent;
               _this4.dados.push(respostaTarefa.resposta); // Adiciona a nova tarefa no array 'dados'
-              _this4.atualizarTabela();
+              // this.atualizarTabela();
               _this4.exibirMensagem('Sucesso', 'Tarefa adicionada com sucesso!', 'success');
-            case 7:
+            case 6:
             case "end":
               return _context3.stop();
           }

@@ -114,7 +114,7 @@ export default {
             };
             const respostaTarefa = await postDados('tarefas', novaTarefa);
             this.dados.push(respostaTarefa.resposta); // Adiciona a nova tarefa no array 'dados'
-            this.atualizarTabela();
+            // this.atualizarTabela();
             this.exibirMensagem('Sucesso', 'Tarefa adicionada com sucesso!', 'success');
         },
         editarRegistro(item) {
