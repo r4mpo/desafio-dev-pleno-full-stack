@@ -2161,6 +2161,8 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             _context.next = 2;
             return _this.recuperarRegistros();
           case 2:
+            _this.removeElementosObsoletos();
+          case 3:
           case "end":
             return _context.stop();
         }
@@ -2389,6 +2391,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
         text: texto,
         icon: icone
       });
+    },
+    removeElementosObsoletos: function removeElementosObsoletos() {
+      document.getElementById('bootstrap-css').remove();
     }
   }
 });
@@ -2430,15 +2435,13 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       emailValido: true,
       nomeValido: true,
       senhaValida: true,
-      confirmacaoSenhaValida: true
+      confirmacaoSenhaValida: true,
+      cadastroValido: false // Inicializa como falso
     };
   },
   computed: {
     loginValido: function loginValido() {
       return this.login.email && this.login.senha;
-    },
-    cadastroValido: function cadastroValido() {
-      return this.nomeValido && this.emailValido && this.senhaValida && this.confirmacaoSenhaValida;
     }
   },
   methods: {
@@ -2452,15 +2455,22 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       var email = this.loginAtivo ? this.login.email : this.cadastro.email;
       var regex = /^[^\s@]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})?$/;
       this.emailValido = regex.test(email);
+      this.validarCadastro();
     },
     validarNome: function validarNome() {
       this.nomeValido = this.cadastro.nome.length >= 3;
+      this.validarCadastro();
     },
     validarSenha: function validarSenha() {
       this.senhaValida = this.cadastro.senha.length >= 6;
+      this.validarCadastro();
     },
     validarConfirmacaoSenha: function validarConfirmacaoSenha() {
       this.confirmacaoSenhaValida = this.cadastro.senha === this.cadastro.confirmacaoSenha;
+      this.validarCadastro();
+    },
+    validarCadastro: function validarCadastro() {
+      this.cadastroValido = this.nomeValido && this.emailValido && this.senhaValida && this.confirmacaoSenhaValida;
     },
     exibirUmaMensagemPersonalizada: function exibirUmaMensagemPersonalizada(mensagem, texto, icone) {
       Swal.fire({
@@ -2594,7 +2604,7 @@ var render = function render() {
   }, [_c("Navbar"), _vm._v(" "), _c("div", {
     staticClass: "container-fluid mt-4"
   }, [_vm._m(0), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary mb-4 btn-lg",
+    staticClass: "btn btn-primary mb-3",
     on: {
       click: _vm.adicionarRegistro
     }
@@ -2620,7 +2630,7 @@ var render = function render() {
     }, [_vm._v("\n                                " + _vm._s(item.status ? "Finalizada" : "Pendente") + "\n                            ")])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(item.titulo))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
     }, [_c("button", {
-      staticClass: "btn btn-warning btn-lg mr-2",
+      staticClass: "btn btn-warning btn-sm mr-1",
       attrs: {
         title: "Editar tarefa"
       },
@@ -2632,7 +2642,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "bi bi-pencil-square"
     })]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-danger btn-lg mr-2",
+      staticClass: "btn btn-danger btn-sm mr-1",
       attrs: {
         title: "Excluir tarefa"
       },
@@ -2644,7 +2654,7 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "bi bi-trash3"
     })]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-info btn-lg",
+      staticClass: "btn btn-info btn-sm",
       attrs: {
         title: "Atualizar status"
       },
@@ -2662,7 +2672,7 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("button", {
-    staticClass: "btn btn-primary mb-4 btn-lg"
+    staticClass: "btn btn-primary mb-3"
   }, [_c("i", {
     staticClass: "bi bi-person-circle"
   }), _vm._v(" Meus Dados")]);
@@ -29623,7 +29633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.container-fluid {\r\n    max-width: 95%;\n}\n.table {\r\n    font-size: 1.2rem;\r\n    width: 100%;\n}\n.table th,\r\n.table td {\r\n    padding: 20px;\r\n    text-align: center;\n}\n.btn {\r\n    font-size: 1rem;\r\n    padding: 12px 20px;\n}\n.btn-lg {\r\n    font-size: 1.2rem;\r\n    padding: 15px 25px;\n}\n@media (max-width: 768px) {\n.btn {\r\n        font-size: 1rem;\r\n        padding: 10px 15px;\n}\n.table th,\r\n    .table td {\r\n        padding: 10px;\n}\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.container-fluid {\r\n    max-width: 90%;\n}\n.table {\r\n    font-size: 1rem;\r\n    width: 100%;\n}\n.table th,\r\n.table td {\r\n    padding: 8px;\r\n    text-align: center;\n}\n.btn {\r\n    font-size: 0.9rem;\r\n    padding: 6px 12px;\n}\n@media (max-width: 768px) {\n.btn {\r\n        font-size: 0.85rem;\r\n        padding: 5px 10px;\n}\n.table th,\r\n    .table td {\r\n        padding: 5px;\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

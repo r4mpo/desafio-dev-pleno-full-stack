@@ -93,15 +93,13 @@ export default {
             emailValido: true,
             nomeValido: true,
             senhaValida: true,
-            confirmacaoSenhaValida: true
+            confirmacaoSenhaValida: true,
+            cadastroValido: false // Inicializa como falso
         };
     },
     computed: {
         loginValido() {
             return this.login.email && this.login.senha;
-        },
-        cadastroValido() {
-            return this.nomeValido && this.emailValido && this.senhaValida && this.confirmacaoSenhaValida;
         }
     },
     methods: {
@@ -115,15 +113,22 @@ export default {
             const email = this.loginAtivo ? this.login.email : this.cadastro.email;
             const regex = /^[^\s@]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})?$/;
             this.emailValido = regex.test(email);
+            this.validarCadastro();
         },
         validarNome() {
             this.nomeValido = this.cadastro.nome.length >= 3;
+            this.validarCadastro();
         },
         validarSenha() {
             this.senhaValida = this.cadastro.senha.length >= 6;
+            this.validarCadastro();
         },
         validarConfirmacaoSenha() {
             this.confirmacaoSenhaValida = this.cadastro.senha === this.cadastro.confirmacaoSenha;
+            this.validarCadastro();
+        },
+        validarCadastro() {
+            this.cadastroValido = this.nomeValido && this.emailValido && this.senhaValida && this.confirmacaoSenhaValida;
         },
         exibirUmaMensagemPersonalizada(mensagem, texto, icone) {
             Swal.fire({

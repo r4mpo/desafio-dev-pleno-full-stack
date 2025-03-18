@@ -2,8 +2,8 @@
     <div class="mb-5">
         <Navbar></Navbar>
         <div class="container-fluid mt-4">
-            <button class="btn btn-primary mb-4 btn-lg"><i class="bi bi-person-circle"></i> Meus Dados</button>
-            <button class="btn btn-primary mb-4 btn-lg" @click="adicionarRegistro">Adicionar Novo</button>
+            <button class="btn btn-primary mb-3"><i class="bi bi-person-circle"></i> Meus Dados</button>
+            <button class="btn btn-primary mb-3" @click="adicionarRegistro">Adicionar Novo</button>
 
             <div class="table-responsive">
                 <table id="tabela" class="table table-bordered table-striped table-hover">
@@ -25,12 +25,18 @@
                             </td>
                             <td>{{ item.titulo }}</td>
                             <td class="text-center">
-                                <button title="Editar tarefa" class="btn btn-warning btn-lg mr-2"
-                                    @click="editarRegistro(item)"><i class="bi bi-pencil-square"></i></button>
-                                <button title="Excluir tarefa" class="btn btn-danger btn-lg mr-2"
-                                    @click="excluirRegistro(item.id)"><i class="bi bi-trash3"></i></button>
-                                <button title="Atualizar status" class="btn btn-info btn-lg"
-                                    @click="alterarStatus(item)"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button title="Editar tarefa" class="btn btn-warning btn-sm mr-1"
+                                    @click="editarRegistro(item)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                                <button title="Excluir tarefa" class="btn btn-danger btn-sm mr-1"
+                                    @click="excluirRegistro(item.id)">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                                <button title="Atualizar status" class="btn btn-info btn-sm"
+                                    @click="alterarStatus(item)">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -60,6 +66,7 @@ export default {
     },
     async mounted() {
         await this.recuperarRegistros();
+        this.removeElementosObsoletos();
     },
     methods: {
         async recuperarRegistros() {
@@ -216,6 +223,9 @@ export default {
         },
         exibirMensagem(titulo, texto, icone) {
             Swal.fire({ title: titulo, text: texto, icon: icone });
+        },
+        removeElementosObsoletos() {
+            document.getElementById('bootstrap-css').remove();
         }
     }
 };
@@ -223,39 +233,34 @@ export default {
 
 <style>
 .container-fluid {
-    max-width: 95%;
+    max-width: 90%;
 }
 
 .table {
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 100%;
 }
 
 .table th,
 .table td {
-    padding: 20px;
+    padding: 8px;
     text-align: center;
 }
 
 .btn {
-    font-size: 1rem;
-    padding: 12px 20px;
-}
-
-.btn-lg {
-    font-size: 1.2rem;
-    padding: 15px 25px;
+    font-size: 0.9rem;
+    padding: 6px 12px;
 }
 
 @media (max-width: 768px) {
     .btn {
-        font-size: 1rem;
-        padding: 10px 15px;
+        font-size: 0.85rem;
+        padding: 5px 10px;
     }
 
     .table th,
     .table td {
-        padding: 10px;
+        padding: 5px;
     }
 }
 </style>
