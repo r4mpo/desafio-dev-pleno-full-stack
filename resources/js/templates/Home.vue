@@ -1,37 +1,41 @@
 <template>
-    <div class="container-fluid mt-4">
-        <button class="btn btn-primary mb-4 btn-lg" @click="adicionarRegistro">Adicionar Novo</button>
+    <div class="mb-5">
+        <Navbar></Navbar>
+        <div class="container-fluid mt-4">
+            <button class="btn btn-primary mb-4 btn-lg"><i class="bi bi-person-circle"></i> Meus Dados</button>
+            <button class="btn btn-primary mb-4 btn-lg" @click="adicionarRegistro">Adicionar Novo</button>
 
-        <div class="table-responsive">
-            <table id="tabela" class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Título</th>
-                        <th class="text-center">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(item, index) in dados" :key="item.id">
-                        <td class="text-center">{{ item.id }}</td>
-                        <td class="text-center">
-                            <span :class="{ 'text-success': item.status, 'text-danger': !item.status }">
-                                {{ item.status ? 'Finalizada' : 'Pendente' }}
-                            </span>
-                        </td>
-                        <td>{{ item.titulo }}</td>
-                        <td class="text-center">
-                            <button title="Editar tarefa" class="btn btn-warning btn-lg mr-2"
-                                @click="editarRegistro(item)"><i class="bi bi-pencil-square"></i></button>
-                            <button title="Excluir tarefa" class="btn btn-danger btn-lg mr-2"
-                                @click="excluirRegistro(item.id)"><i class="bi bi-trash3"></i></button>
-                            <button title="Atualizar status" class="btn btn-info btn-lg" @click="alterarStatus(item)"><i
-                                    class="bi bi-arrow-clockwise"></i></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="tabela" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Título</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item, index) in dados" :key="item.id">
+                            <td class="text-center">{{ item.id }}</td>
+                            <td class="text-center">
+                                <span :class="{ 'text-success': item.status, 'text-danger': !item.status }">
+                                    {{ item.status ? 'Finalizada' : 'Pendente' }}
+                                </span>
+                            </td>
+                            <td>{{ item.titulo }}</td>
+                            <td class="text-center">
+                                <button title="Editar tarefa" class="btn btn-warning btn-lg mr-2"
+                                    @click="editarRegistro(item)"><i class="bi bi-pencil-square"></i></button>
+                                <button title="Excluir tarefa" class="btn btn-danger btn-lg mr-2"
+                                    @click="excluirRegistro(item.id)"><i class="bi bi-trash3"></i></button>
+                                <button title="Atualizar status" class="btn btn-info btn-lg"
+                                    @click="alterarStatus(item)"><i class="bi bi-arrow-clockwise"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </template>
@@ -41,6 +45,7 @@ import $ from 'jquery';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
 import { deleteDados, getDados, postDados, putDados } from '../helpers/axios';
+import Navbar from '../components/Navbar.vue';
 
 export default {
     name: "Home",
@@ -49,6 +54,9 @@ export default {
             dados: [],
             tabela: null
         };
+    },
+    components: {
+        Navbar
     },
     async mounted() {
         await this.recuperarRegistros();
@@ -169,7 +177,7 @@ export default {
                     this.dados = this.dados.filter(item => item.id !== id);
                     Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
 
-                    if(this.dados.length === 0){
+                    if (this.dados.length === 0) {
                         window.location.reload();
                     }
                 } else {
