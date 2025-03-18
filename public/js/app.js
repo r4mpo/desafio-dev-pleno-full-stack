@@ -2539,7 +2539,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 3:
               respostaLogin = _context.sent;
               sessionStorage.setItem('token', respostaLogin.resposta.token);
-              _this.$router.push('/home');
+              _this.$router.push('/');
               _context.next = 11;
               break;
             case 8:
@@ -2566,7 +2566,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 3:
               respostaLogin = _context2.sent;
               sessionStorage.setItem('token', respostaLogin.resposta.token);
-              _this2.$router.push('/home');
+              _this2.$router.push('/');
               _context2.next = 11;
               break;
             case 8:

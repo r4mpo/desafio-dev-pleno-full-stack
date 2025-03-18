@@ -136,7 +136,7 @@ export default {
             try {
                 let respostaLogin = await login(this.login.email, this.login.senha);
                 sessionStorage.setItem('token', respostaLogin.resposta.token);
-                this.$router.push('/home');
+                this.$router.push('/');
             } catch (erro) {
                 this.exibirUmaMensagemPersonalizada('Ops!', 'Usuário ou senha inválidos, tente novamente!', 'error');
             }
@@ -145,7 +145,7 @@ export default {
             try {
                 let respostaLogin = await registrar(this.cadastro.nome, this.cadastro.email, this.cadastro.senha);
                 sessionStorage.setItem('token', respostaLogin.resposta.token);
-                this.$router.push('/home');
+                this.$router.push('/');
             } catch (erro) {
                 this.exibirUmaMensagemPersonalizada('Ops!', 'Houve um problema ao registrar usuário, tente novamente!', 'error');
             }
