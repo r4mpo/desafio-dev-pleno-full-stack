@@ -2262,9 +2262,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
             case 3:
               respostaTarefa = _context3.sent;
               _this4.dados.push(respostaTarefa.resposta); // Adiciona a nova tarefa no array 'dados'
-              // this.atualizarTabela();
+              _this4.atualizarTabela();
               _this4.exibirMensagem('Sucesso', 'Tarefa adicionada com sucesso!', 'success');
-            case 6:
+            case 7:
             case "end":
               return _context3.stop();
           }
@@ -2374,7 +2374,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       var _this8 = this;
       this.$nextTick(function () {
         if (_this8.tabela) {
-          _this8.tabela.destroy();
+          _this8.tabela.reload();
         }
         _this8.tabela = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabela').DataTable({
           language: {
