@@ -2325,7 +2325,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     excluirRegistro: function excluirRegistro(id) {
       var _this7 = this;
       return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-        var confirmacao;
+        var confirmacao, respostaTarefa;
         return _regeneratorRuntime().wrap(function _callee5$(_context5) {
           while (1) switch (_context5.prev = _context5.next) {
             case 0:
@@ -2340,14 +2340,26 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
               });
             case 2:
               confirmacao = _context5.sent;
-              if (confirmacao.isConfirmed) {
+              if (!confirmacao.isConfirmed) {
+                _context5.next = 8;
+                break;
+              }
+              _context5.next = 6;
+              return (0,_helpers_axios__WEBPACK_IMPORTED_MODULE_3__.deleteDados)('tarefas/' + id);
+            case 6:
+              respostaTarefa = _context5.sent;
+              if (respostaTarefa.codigo_resposta === 111) {
                 _this7.dados = _this7.dados.filter(function (item) {
                   return item.id !== id;
                 });
-                _this7.atualizarTabela();
                 Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
+                if (_this7.dados.length === 0) {
+                  window.location.reload();
+                }
+              } else {
+                _this7.exibirMensagem('Ops', 'Houve um erro ao excluir a tarefa!', 'error');
               }
-            case 4:
+            case 8:
             case "end":
               return _context5.stop();
           }

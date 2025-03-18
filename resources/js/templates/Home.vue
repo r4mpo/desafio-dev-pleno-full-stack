@@ -40,7 +40,7 @@
 import $ from 'jquery';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
-import { getDados, postDados, putDados } from '../helpers/axios';
+import { deleteDados, getDados, postDados, putDados } from '../helpers/axios';
 
 export default {
     name: "Home",
@@ -164,9 +164,17 @@ export default {
             });
 
             if (confirmacao.isConfirmed) {
-                this.dados = this.dados.filter(item => item.id !== id);
-                this.atualizarTabela();
-                Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
+                const respostaTarefa = await deleteDados('tarefas/' + id);
+                if (respostaTarefa.codigo_resposta === 111) {
+                    this.dados = this.dados.filter(item => item.id !== id);
+                    Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
+
+                    if(this.dados.length === 0){
+                        window.location.reload();
+                    }
+                } else {
+                    this.exibirMensagem('Ops', 'Houve um erro ao excluir a tarefa!', 'error');
+                }
             }
         },
         alterarStatus(item) {
