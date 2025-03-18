@@ -2149,6 +2149,9 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2286,24 +2289,47 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       });
     },
     atualizarTarefa: function atualizarTarefa(id, titulo, status) {
-      var tarefa = this.dados.find(function (item) {
-        return item.id === id;
-      });
-      if (tarefa) {
-        tarefa.titulo = titulo;
-        tarefa.status = status;
-        this.atualizarTabela();
-        this.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
-      }
-    },
-    excluirRegistro: function excluirRegistro(id) {
       var _this6 = this;
       return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var confirmacao;
+        var respostaTarefa, tarefa;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
+              return (0,_helpers_axios__WEBPACK_IMPORTED_MODULE_3__.putDados)('tarefas/' + id, {
+                'titulo': titulo,
+                'status': status
+              });
+            case 2:
+              respostaTarefa = _context4.sent;
+              if (respostaTarefa.codigo_resposta === 111) {
+                tarefa = _this6.dados.find(function (item) {
+                  return item.id === id;
+                });
+                if (tarefa) {
+                  tarefa.titulo = titulo;
+                  tarefa.status = status;
+                  _this6.atualizarTabela();
+                  _this6.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
+                }
+              } else {
+                _this6.exibirMensagem('Ops', 'Houve um erro ao atualizar a tarefa!', 'error');
+              }
+            case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4);
+      }))();
+    },
+    excluirRegistro: function excluirRegistro(id) {
+      var _this7 = this;
+      return _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+        var confirmacao;
+        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+          while (1) switch (_context5.prev = _context5.next) {
+            case 0:
+              _context5.next = 2;
               return Swal.fire({
                 title: 'Tem certeza?',
                 text: "Essa ação não pode ser desfeita.",
@@ -2313,19 +2339,19 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
                 cancelButtonText: 'Cancelar'
               });
             case 2:
-              confirmacao = _context4.sent;
+              confirmacao = _context5.sent;
               if (confirmacao.isConfirmed) {
-                _this6.dados = _this6.dados.filter(function (item) {
+                _this7.dados = _this7.dados.filter(function (item) {
                   return item.id !== id;
                 });
-                _this6.atualizarTabela();
+                _this7.atualizarTabela();
                 Swal.fire('Excluído!', 'A tarefa foi excluída.', 'success');
               }
             case 4:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     alterarStatus: function alterarStatus(item) {
@@ -2333,12 +2359,12 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
       this.atualizarTabela();
     },
     atualizarTabela: function atualizarTabela() {
-      var _this7 = this;
+      var _this8 = this;
       this.$nextTick(function () {
-        if (_this7.tabela) {
-          _this7.tabela.destroy();
+        if (_this8.tabela) {
+          _this8.tabela.destroy();
         }
-        _this7.tabela = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabela').DataTable({
+        _this8.tabela = jquery__WEBPACK_IMPORTED_MODULE_0___default()('#tabela').DataTable({
           language: {
             "lengthMenu": "Mostrar _MENU_ registros por página",
             "zeroRecords": "Nenhum registro encontrado",

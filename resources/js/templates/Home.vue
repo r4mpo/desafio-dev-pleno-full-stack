@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid mt-4">
         <button class="btn btn-primary mb-4 btn-lg" @click="adicionarRegistro">Adicionar Novo</button>
-        
+
         <div class="table-responsive">
             <table id="tabela" class="table table-bordered table-striped table-hover">
                 <thead>
@@ -22,9 +22,12 @@
                         </td>
                         <td>{{ item.titulo }}</td>
                         <td class="text-center">
-                            <button title="Editar tarefa" class="btn btn-warning btn-lg mr-2" @click="editarRegistro(item)"><i class="bi bi-pencil-square"></i></button>
-                            <button title="Excluir tarefa" class="btn btn-danger btn-lg mr-2" @click="excluirRegistro(item.id)"><i class="bi bi-trash3"></i></button>
-                            <button title="Atualizar status" class="btn btn-info btn-lg" @click="alterarStatus(item)"><i class="bi bi-arrow-clockwise"></i></button>
+                            <button title="Editar tarefa" class="btn btn-warning btn-lg mr-2"
+                                @click="editarRegistro(item)"><i class="bi bi-pencil-square"></i></button>
+                            <button title="Excluir tarefa" class="btn btn-danger btn-lg mr-2"
+                                @click="excluirRegistro(item.id)"><i class="bi bi-trash3"></i></button>
+                            <button title="Atualizar status" class="btn btn-info btn-lg" @click="alterarStatus(item)"><i
+                                    class="bi bi-arrow-clockwise"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -37,7 +40,7 @@
 import $ from 'jquery';
 import 'datatables.net-bs4';
 import 'datatables.net-responsive-bs4';
-import { getDados, postDados } from '../helpers/axios';
+import { getDados, postDados, putDados } from '../helpers/axios';
 
 export default {
     name: "Home",
@@ -136,13 +139,18 @@ export default {
                 }
             });
         },
-        atualizarTarefa(id, titulo, status) {
-            const tarefa = this.dados.find(item => item.id === id);
-            if (tarefa) {
-                tarefa.titulo = titulo;
-                tarefa.status = status;
-                this.atualizarTabela();
-                this.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
+        async atualizarTarefa(id, titulo, status) {
+            const respostaTarefa = await putDados('tarefas/' + id, { 'titulo': titulo, 'status': status });
+            if (respostaTarefa.codigo_resposta === 111) {
+                const tarefa = this.dados.find(item => item.id === id);
+                if (tarefa) {
+                    tarefa.titulo = titulo;
+                    tarefa.status = status;
+                    this.atualizarTabela();
+                    this.exibirMensagem('Sucesso', 'Tarefa atualizada com sucesso!', 'success');
+                }
+            } else {
+                this.exibirMensagem('Ops', 'Houve um erro ao atualizar a tarefa!', 'error');
             }
         },
         async excluirRegistro(id) {
