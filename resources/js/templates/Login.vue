@@ -159,7 +159,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .is-invalid input {
     border-color: red !important;
 }
@@ -173,6 +173,7 @@ body {
 }
 
 .panel-login {
+    margin-top: 30%;
     border-color: #ccc;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);

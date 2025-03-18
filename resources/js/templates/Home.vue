@@ -2,7 +2,6 @@
     <div class="mb-5">
         <Navbar></Navbar>
         <div class="container-fluid mt-4">
-            <button class="btn btn-primary mb-3"><i class="bi bi-person-circle"></i> Meus Dados</button>
             <button class="btn btn-primary mb-3" @click="adicionarRegistro">Adicionar Novo</button>
 
             <div class="table-responsive">
@@ -66,7 +65,6 @@ export default {
     },
     async mounted() {
         await this.recuperarRegistros();
-        this.removeElementosObsoletos();
     },
     methods: {
         async recuperarRegistros() {
@@ -224,14 +222,11 @@ export default {
         exibirMensagem(titulo, texto, icone) {
             Swal.fire({ title: titulo, text: texto, icon: icone });
         },
-        removeElementosObsoletos() {
-            document.getElementById('bootstrap-css').remove();
-        }
     }
 };
 </script>
 
-<style>
+<style scoped>
 .container-fluid {
     max-width: 90%;
 }
@@ -262,5 +257,11 @@ export default {
     .table td {
         padding: 5px;
     }
+}
+body,
+.container-fluid,
+.navbar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 </style>

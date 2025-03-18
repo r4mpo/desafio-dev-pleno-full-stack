@@ -8,13 +8,19 @@ Vue.use(VueRouter);
 // Importar os componentes que serão usados nas rotas
 import Home from './../templates/Home.vue';
 import Login from './../templates/Login.vue';
+import Perfil from './../templates/Perfil.vue';
 
 const routes = [
     { path: '/login', component: Login },
     { 
         path: '/', 
         component: Home, 
-        meta: { requiresAuth: true } // Adiciona um meta dado para proteger a rota
+        meta: { requiresAuth: true }
+    },
+    { 
+        path: '/perfil', 
+        component: Perfil, 
+        meta: { requiresAuth: true }
     }
 ];
 
