@@ -23,6 +23,9 @@ O desenvolvimento seguiu boas práticas de arquitetura, utilizando o  **SOLID** 
 * HTML5, CSS3, JavaScript
 * Bootstrap
 * DataTable
+* Vue-Router
+* JQuery
+* Axios
 
 ### **🔹 Documentação:**
 
@@ -39,7 +42,7 @@ O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por m
 
 ### 🛢️ **Criação do Banco de Dados**
 
-![Criação do Banco](https://chatgpt.com/c/logs/documentation/1741993733033.png)
+![Criação do Banco](logs/documentation/1741993733033.png)
 
 ### 📊 **Migração de Tabelas**
 

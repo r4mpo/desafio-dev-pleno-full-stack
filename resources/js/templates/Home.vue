@@ -179,6 +179,7 @@ export default {
         },
         alterarStatus(item) {
             item.status = !item.status;
+            this.atualizarTarefa(item.id, item.titulo, item.status)
             this.atualizarTabela();
         },
         atualizarTabela() {

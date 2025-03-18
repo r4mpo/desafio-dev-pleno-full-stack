@@ -2368,6 +2368,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
     },
     alterarStatus: function alterarStatus(item) {
       item.status = !item.status;
+      this.atualizarTarefa(item.id, item.titulo, item.status);
       this.atualizarTabela();
     },
     atualizarTabela: function atualizarTabela() {
