@@ -598,7 +598,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3VzdWFyaW8vbG9naW4iLCJpYXQiOjE3NDExMTQ4OTYsImV4cCI6MTc0MTExODQ5NiwibmJmIjoxNzQxMTE0ODk2LCJqdGkiOiJoQlJzSkFFcGU0blk5MUh2Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.piXRfWsK355vWTHfQvDpwDachS4yIPuvGmN6ckqgGj4",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAiLCJpYXQiOjE3NDIwMDQyNTgsImV4cCI6MTc0MjAwNzg1OCwibmJmIjoxNzQyMDA0MjU4LCJqdGkiOiJRa0diRnlDNE8zaHNweXVmIiwic3ViIjoiMTUiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.1-KL4lvgZ0CcCs5savlzwAJ3-5XIlJ3gEcLnTKma0-U",
 									"type": "string"
 								}
 							]
@@ -642,12 +642,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhar",
+									"raw": "{{base_url}}usuario/detalhes",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhar"
+										"detalhes"
 									]
 								}
 							},
@@ -707,12 +707,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhar",
+									"raw": "{{base_url}}usuario/detalhes",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhar"
+										"detalhes"
 									]
 								}
 							},
@@ -772,12 +772,12 @@
 									"formdata": []
 								},
 								"url": {
-									"raw": "{{base_url}}usuario/detalhar",
+									"raw": "{{base_url}}usuario/detalhes",
 									"host": [
 										"{{base_url}}usuario"
 									],
 									"path": [
-										"detalhar"
+										"detalhes"
 									]
 								}
 							},
@@ -994,7 +994,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Operações relacionadas aos usuários"
 		},
 		{
 			"name": "Tarefas",
@@ -1002,6 +1003,16 @@
 				{
 					"name": "Consultar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC91c3VhcmlvXC9yZWdpc3RyYXIiLCJpYXQiOjE3NDIwMTA5ODcsImV4cCI6MTc0MjAxNDU4NywibmJmIjoxNzQyMDEwOTg3LCJqdGkiOiJvYWtlU0JLSlFoQ0RIUmR0Iiwic3ViIjo3LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.MG1kmUbIVfVjpJf9JJ93mbY5EmjZrd_7QtFHVR3Fv_c",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -1123,8 +1134,144 @@
 					]
 				},
 				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}tarefas/2",
+							"host": [
+								"{{base_url}}tarefas"
+							],
+							"path": [
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "111 - Sucesso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}tarefas?status=true",
+									"host": [
+										"{{base_url}}tarefas"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Mar 2025 23:53:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resposta\": [\n        {\n            \"id\": 1,\n            \"titulo\": \"Desenvolver Site\",\n            \"status\": true,\n            \"created_at\": null,\n            \"updated_at\": null\n        }\n    ],\n    \"codigo_resposta\": 111\n}"
+						},
+						{
+							"name": "333 - Não Encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}tarefas?status=false",
+									"host": [
+										"{{base_url}}tarefas"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Mar 2025 23:53:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resposta\": \"Tarefas não foram encontradas. Tente novamente.\",\n    \"codigo_resposta\": 333\n}"
+						}
+					]
+				},
+				{
 					"name": "Registrar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC91c3VhcmlvXC9sb2dpbiIsImlhdCI6MTc0MjI1NDc3OCwiZXhwIjoxNzQyMjU4Mzc4LCJuYmYiOjE3NDIyNTQ3NzgsImp0aSI6IkpyUkI0VHMxWUREVXhKWE8iLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.Mt1mv5qkmOlqCDj_69cbuMbyancq2PJo0xO8BlAXDPE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -1515,7 +1662,298 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Operações relacionadas às tarefas"
+		},
+		{
+			"name": "Endereços",
+			"item": [
+				{
+					"name": "Consultar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC91c3VhcmlvXC9sb2dpbiIsImlhdCI6MTc0MjM0MDE4NCwiZXhwIjoxNzQyMzQzNzg0LCJuYmYiOjE3NDIzNDAxODQsImp0aSI6IktkeXRQbTJ6Q21vYmRqekkiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.4F1sP1B1ZIRzhz4vA_o1NPnhJw9tl6HSBwR5JpVFbMs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}enderecos",
+							"host": [
+								"{{base_url}}enderecos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "333 - Não Encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}enderecos",
+									"host": [
+										"{{base_url}}enderecos"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:35:25 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:35:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.33"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resposta\": \"Endereços não foram encontrados. Tente novamente.\",\n    \"codigo_resposta\": 333\n}"
+						},
+						{
+							"name": "111 - Sucesso",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}enderecos",
+									"host": [
+										"{{base_url}}enderecos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:40:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:40:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.33"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resposta\": {\n        \"id\": 2,\n        \"user_id\": 1,\n        \"cep\": \"13183135\",\n        \"logradouro\": \"Rua Capitão Gancho\",\n        \"bairro\": \"Campos Marítimos\",\n        \"cidade\": \"Vila Velha EDIT\",\n        \"estado\": \"MG\",\n        \"created_at\": \"2025-03-18T23:38:45.000000Z\",\n        \"updated_at\": \"2025-03-18T23:39:45.000000Z\"\n    },\n    \"codigo_resposta\": 111\n}"
+						}
+					]
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC91c3VhcmlvXC9sb2dpbiIsImlhdCI6MTc0MjM0MDE4NCwiZXhwIjoxNzQyMzQzNzg0LCJuYmYiOjE3NDIzNDAxODQsImp0aSI6IktkeXRQbTJ6Q21vYmRqekkiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.4F1sP1B1ZIRzhz4vA_o1NPnhJw9tl6HSBwR5JpVFbMs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cep\": \"13183135\",\r\n    \"logradouro\": \"Rua Capitão Gancho\",\r\n    \"bairro\": \"Campos Marítimos\",\r\n    \"cidade\": \"Vila Velha\",\r\n    \"estado\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}enderecos/atualizar",
+							"host": [
+								"{{base_url}}enderecos"
+							],
+							"path": [
+								"atualizar"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "111 - Sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cep\": \"13183135\",\r\n    \"logradouro\": \"Rua Capitão Gancho\",\r\n    \"bairro\": \"Campos Marítimos\",\r\n    \"cidade\": \"Vila Velha\",\r\n    \"estado\": \"SP\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}enderecos/atualizar",
+									"host": [
+										"{{base_url}}enderecos"
+									],
+									"path": [
+										"atualizar"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:38:45 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 Mar 2025 23:38:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.4.33"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"resposta\": \"Sucesso na operação.\",\n    \"codigo_resposta\": 111\n}"
+						}
+					]
+				}
+			],
+			"description": "Operações relacionadas aos endereços"
 		}
 	],
 	"event": [

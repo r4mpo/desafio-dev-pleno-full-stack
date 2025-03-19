@@ -23,6 +23,9 @@ O desenvolvimento seguiu boas práticas de arquitetura, utilizando o  **SOLID** 
 * HTML5, CSS3, JavaScript
 * Bootstrap
 * DataTable
+* Vue-Router
+* JQuery
+* Axios
 
 ### **🔹 Documentação:**
 
@@ -33,17 +36,21 @@ O desenvolvimento seguiu boas práticas de arquitetura, utilizando o  **SOLID** 
 
 * ViaCEP (consulta de endereços pelo CEP)
 
+## **📌 Fluxograma de Rotas Principais**
+
+![Fluxograma de Rotas](logs/flow/api_routes_flowchart.png)
+
 ## **📌 Banco de Dados**
 
 O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por meio de  **migrations nativas do Laravel** . Isso garante consistência entre as tabelas e os modelos da aplicação.
 
 ### 🛢️ **Criação do Banco de Dados**
 
-![Criação do Banco](https://chatgpt.com/c/logs/documentation/1741993733033.png)
+![Criação do Banco](logs/documentation/1741993733033.png)
 
 ### 📊 **Migração de Tabelas**
 
-![Migração de Tabelas](logs/documentation/1741992928334.png)
+![Migração de Tabelas](logs/documentation/1741992928335.png)[
 
 ### 📋 **Estrutura das Tabelas**
 
@@ -55,7 +62,11 @@ O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por m
 
 ![Tabela de Usuários](logs/documentation/1741993397962.png)
 
-## **📌 Back-End/API**
+#### **Endereços**
+
+![Migração de Tabelas](logs/documentation/1742005106986.png)
+
+## **📌 Back-End**
 
 O backend da aplicação segue os princípios  **SOLID** , garantindo um código limpo, modular e de fácil manutenção. As rotas são protegidas por autenticação JWT e documentadas com **Postman** e  **Swagger** . O padrão RESTful foi seguido para garantir uma API organizada e previsível.
 
@@ -94,7 +105,7 @@ Route::resource('tarefas', TarefasCrudController::class);
 Todas as rotas foram documentadas com **Postman** e  **Swagger** . A documentação está acessível via:
 
 * **Swagger UI:** `GET /api/documentation`
-* **Coleção Postman:** [Link para a coleção](http://localhost:8000/api/documentation) *(após instalação de projeto, conferir em ambiente local)*
+* **Coleção Postman:** collection\API Laravel - Gerenciamento Tarefas.postman_collection.json
 
 ### 🔹 **Princípios SOLID e Estrutura do Código**
 
@@ -122,8 +133,38 @@ php artisan test
 
 ![1742005106985](logs/documentation/1742005106985.png)
 
+## **📌 Front-End**
+
+### 📱 Documentação API - Swagger
+
+Documentação completa da API pelo Swagger, com informações sobre cada uma das rotas e proteção por autenticação:
+
+![Documentação da API](logs/pages/swagger.png)
+
+### 📱 Login e Registro
+
+Interface de registro e autenticação de usuários:
+
+![Cadastro e Login de Usuários](logs/pages/usuários/login.png)
+
+![Cadastro e Login de Usuários](logs/pages/usuários/registrar.png)
+
+### 📱 Tarefas
+
+Interações demonstradas na interface de gestão das tarefas, onde pode-se visualizar dados, cadastrar novas informações, atualizar, excluir e alterar o status de uma atividade. Confira a seguir:
+
+![Visualizar e Adicionar Tarefas](logs/pages/tarefas/visualizar_adicionar.gif)
+
+![Editar, excluir e mudar status](logs/pages/tarefas/editar_excluir_mudar_status.gif)
+
+### 📱 Endereços
+
+Interface responsável por integrar a API Pública do ViaCep, sendo um serviço web externo, com a API interna deste projeto, salvando as informações em nossa base de dados local. (Bônus: Neste momento, aproveito e mostro o logout, hahaha):
+
+![Criação do Banco](logs/pages/enderecos/enderecos.gif)
+
 ---
 
-## **📌 Conclusão**
+## **🖥️ Instalação do Projeto em Ambiente Linux ou Windows**
 
 Este projeto foi desenvolvido visando qualidade de código, organização e boas práticas. Ele serve como um modelo para aplicações Laravel bem estruturadas. Caso tenha alguma dúvida ou sugestão, fique à vontade para contribuir ou abrir uma issue! 🚀

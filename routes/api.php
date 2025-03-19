@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Tarefas\TarefasCrudController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Infos\EnderecosController;
+use App\Http\Controllers\Tarefas\TarefasCrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,8 @@ Route::controller(AuthController::class)->prefix('usuario')->group(function () {
 });
 
 Route::resource('tarefas', TarefasCrudController::class)->middleware('token');
+
+Route::controller(EnderecosController::class)->prefix('enderecos')->middleware('token')->group(function () {
+    Route::get('/', 'consultar');
+    Route::post('/atualizar', 'atualizar');
+});

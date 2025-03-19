@@ -10,6 +10,169 @@
         }
     ],
     "paths": {
+        "/enderecos/atualizar": {
+            "post": {
+                "tags": [
+                    "Endereços"
+                ],
+                "summary": "Atualizar endereço do usuário",
+                "operationId": "adb3c03f159fbfe174435fb1d4ea9c49",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "cep": {
+                                        "type": "string",
+                                        "example": "13183135"
+                                    },
+                                    "logradouro": {
+                                        "type": "string",
+                                        "example": "Rua Capitão Gancho"
+                                    },
+                                    "bairro": {
+                                        "type": "string",
+                                        "example": "Campos Marítimos"
+                                    },
+                                    "cidade": {
+                                        "type": "string",
+                                        "example": "Vila Velha"
+                                    },
+                                    "estado": {
+                                        "type": "string",
+                                        "example": "SP"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Endereço atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resposta": {
+                                            "type": "string",
+                                            "example": "Sucesso na operação."
+                                        },
+                                        "codigo_resposta": {
+                                            "type": "integer",
+                                            "example": 111
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/enderecos": {
+            "get": {
+                "tags": [
+                    "Endereços"
+                ],
+                "summary": "Consultar endereço do usuário",
+                "operationId": "19f01b03132637d4f7a81fcfa88f244d",
+                "responses": {
+                    "200": {
+                        "description": "Endereço encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resposta": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "cep": {
+                                                    "type": "string",
+                                                    "example": "13183135"
+                                                },
+                                                "logradouro": {
+                                                    "type": "string",
+                                                    "example": "Rua Capitão Gancho"
+                                                },
+                                                "bairro": {
+                                                    "type": "string",
+                                                    "example": "Campos Marítimos"
+                                                },
+                                                "cidade": {
+                                                    "type": "string",
+                                                    "example": "Vila Velha EDIT"
+                                                },
+                                                "estado": {
+                                                    "type": "string",
+                                                    "example": "MG"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-03-18T23:38:45.000000Z"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-03-18T23:39:45.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "codigo_resposta": {
+                                            "type": "integer",
+                                            "example": 111
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Endereço não encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resposta": {
+                                            "type": "string",
+                                            "example": "Endereços não foram encontrados. Tente novamente."
+                                        },
+                                        "codigo_resposta": {
+                                            "type": "integer",
+                                            "example": 333
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "padrao": {
             "options": {
                 "tags": [
@@ -905,6 +1068,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Endereços",
+            "description": "Endereços"
+        },
         {
             "name": "Retorno Padrão",
             "description": "Retorno Padrão"
