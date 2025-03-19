@@ -135,13 +135,13 @@ php artisan test
 
 ## **📌 Front-End**
 
-### Documentação API - Swagger
+### 📱 Documentação API - Swagger
 
 Documentação completa da API pelo Swagger, com informações sobre cada uma das rotas e proteção por autenticação:
 
 ![Documentação da API](logs/pages/swagger.png)
 
-### Login e Registro
+### 📱 Login e Registro
 
 Interface de registro e autenticação de usuários:
 
@@ -149,7 +149,7 @@ Interface de registro e autenticação de usuários:
 
 ![Cadastro e Login de Usuários](logs/pages/usuários/registrar.png)
 
-### Tarefas
+### 📱 Tarefas
 
 Interações demonstradas na interface de gestão das tarefas, onde pode-se visualizar dados, cadastrar novas informações, atualizar, excluir e alterar o status de uma atividade. Confira a seguir:
 
@@ -157,8 +157,14 @@ Interações demonstradas na interface de gestão das tarefas, onde pode-se visu
 
 ![Editar, excluir e mudar status](logs/pages/tarefas/editar_excluir_mudar_status.gif)
 
+### 📱 Endereços
+
+Interface responsável por integrar a API Pública do ViaCep, sendo um serviço web externo, com a API interna deste projeto, salvando as informações em nossa base de dados local. (Bônus: Neste momento, aproveito e mostro o logout, hahaha):
+
+![Criação do Banco](logs/pages/enderecos/enderecos.gif)
+
 ---
 
-## **📌 Conclusão**
+## **🖥️ Instalação do Projeto em Ambiente Linux ou Windows**
 
 Este projeto foi desenvolvido visando qualidade de código, organização e boas práticas. Ele serve como um modelo para aplicações Laravel bem estruturadas. Caso tenha alguma dúvida ou sugestão, fique à vontade para contribuir ou abrir uma issue! 🚀
