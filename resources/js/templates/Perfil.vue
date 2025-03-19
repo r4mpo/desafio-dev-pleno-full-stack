@@ -36,6 +36,7 @@
 
 <script>
 import Navbar from '../components/Navbar.vue';
+import { getDados, postDados } from '../helpers/axios'; // Supondo que você já tenha o arquivo de serviço axios
 
 export default {
     name: 'Perfil',
@@ -52,7 +53,30 @@ export default {
     components: {
         Navbar,
     },
+    created() {
+        this.consultarEnderecos(); // Consultar os dados de endereço já existentes quando o componente carregar
+    },
     methods: {
+        // Consome a rota /enderecos para consultar os dados de endereço do usuário
+        async consultarEnderecos() {
+            try {
+                const response = await getDados('enderecos'); // Endereço da API de consulta
+                if (response.codigo_resposta === 111) {
+                    this.cep = response.resposta.cep;
+                    this.logradouro = response.resposta.logradouro;
+                    this.bairro = response.resposta.bairro;
+                    this.cidade = response.resposta.cidade;
+                    this.estado = response.resposta.estado;
+                    this.cepValido = true;
+                } else {
+                    this.exibirMensagem('Ops!', 'Nenhuma informação do seu endereço', 'error');
+                }
+            } catch (error) {
+                this.exibirMensagem('Erro', 'Erro ao carregar os endereços.', 'error');
+            }
+        },
+
+        // Consulta o ViaCEP quando o campo de CEP perde o foco
         async consultarCep() {
             if (this.cep.length === 8) {
                 try {
@@ -65,21 +89,40 @@ export default {
                         this.estado = data.uf;
                         this.cepValido = true; // Habilita os campos quando o CEP for válido
                     } else {
-                        this.exibirMensagem('Ops!', 'CEP não encontrado', 'error');
+                        this.exibirMensagem('Erro', 'CEP não encontrado.', 'error');
                         this.cepValido = false;
                     }
                 } catch (error) {
-                    this.exibirMensagem('Ops!', 'Erro ao consultar CEP', 'error');
+                    this.exibirMensagem('Erro', 'Erro ao consultar CEP.', 'error');
                     this.cepValido = false;
                 }
             } else {
                 this.cepValido = false; // Desabilita os campos se o CEP não for válido
             }
         },
-        submitForm() {
-            // Lógica de envio de formulário
-            console.log('Formulário enviado');
+
+        // Consome a rota /enderecos/atualizar para atualizar os dados de endereço do usuário
+        async submitForm() {
+            const body = {
+                cep: this.cep,
+                logradouro: this.logradouro,
+                bairro: this.bairro,
+                cidade: this.cidade,
+                estado: this.estado
+            };
+
+            try {
+                const response = await postDados('enderecos/atualizar', body); // Endereço da API de atualização
+                if (response.codigo_resposta === 111) {
+                    this.exibirMensagem('Sucesso', 'Endereço atualizado com sucesso!', 'success');
+                } else {
+                    this.exibirMensagem('Erro', 'Erro ao atualizar endereço.', 'error');
+                }
+            } catch (error) {
+                this.exibirMensagem('Erro', 'Erro ao enviar dados.', 'error');
+            }
         },
+
         exibirMensagem(titulo, texto, icone) {
             Swal.fire({ title: titulo, text: texto, icon: icone });
         },
