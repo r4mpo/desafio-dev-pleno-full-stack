@@ -167,4 +167,105 @@ Interface responsável por integrar a API Pública do ViaCep, sendo um serviço 
 
 ## **🖥️ Instalação do Projeto em Ambiente Linux ou Windows**
 
-Este projeto foi desenvolvido visando qualidade de código, organização e boas práticas. Ele serve como um modelo para aplicações Laravel bem estruturadas. Caso tenha alguma dúvida ou sugestão, fique à vontade para contribuir ou abrir uma issue! 🚀
+```md
+# 📌 Manual de Instalação - Projeto Laravel
+
+Este guia fornece as etapas para instalar e configurar o projeto Laravel corretamente.
+
+## 🚀 Requisitos
+
+Antes de começar, certifique-se de ter os seguintes requisitos instalados:
+
+- PHP 7.4+
+- Composer
+- PostgreSQL ou outro banco de dados compatível
+- Node.js e npm
+
+## 📥 Passo a Passo da Instalação
+
+### 1️⃣ Clonar o Projeto
+Clone o repositório do GitHub para sua máquina local:
+
+```sh
+git clone https://github.com/r4mpo/desafio-dev-pleno-full-stack.git
+cd desafio-dev-pleno-full-stack
+```
+
+### 2️⃣ Criar o Arquivo `.env`
+
+Copie o arquivo `.env.example` e renomeie para `.env`:
+
+```sh
+cp .env.example .env
+```
+
+### 3️⃣ Configurar o `.env`
+
+Edite o arquivo `.env` e configure as credenciais do banco de dados:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=seu_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+```
+
+### 4️⃣ Instalar Dependências
+
+Execute os comandos abaixo para instalar as dependências do projeto:
+
+```sh
+composer install
+composer update
+```
+
+### 5️⃣ Rodar as Migrações
+
+Crie as tabelas no banco de dados executando as migrations:
+
+```sh
+php artisan migrate
+```
+
+### 6️⃣ Gerar Chave do JWT
+
+Gere a chave necessária para autenticação com JWT:
+
+```sh
+php artisan jwt:secret
+```
+
+### 7️⃣ Iniciar o Servidor Laravel
+
+Inicie o servidor de desenvolvimento do Laravel:
+
+```sh
+php artisan serve
+```
+
+O backend estará disponível em `http://127.0.0.1:8000`.
+
+### 8️⃣ Instalar e Configurar o Frontend
+
+Se o projeto possuir frontend com Vue.js ou outra tecnologia, execute:
+
+```sh
+npm install
+npm run dev
+```
+
+---
+
+### **📌 Conclusão**
+
+Este projeto demonstrou a capacidade de estruturar e desenvolver uma aplicação robusta, segura e escalável, seguindo os princípios do **SOLID** e adotando boas práticas do desenvolvimento  **Full Stack** . A solução proposta abrange tanto o backend, construído em  **Laravel** , quanto o frontend, desenvolvido com  **Vue.js** , garantindo uma experiência eficiente para os usuários no gerenciamento de tarefas.
+
+A utilização de  **autenticação JWT** , integração com **API externa (ViaCEP)** e documentação com **Swagger e Postman** reforça o compromisso com a segurança e organização do código. Além disso, o projeto conta com  **testes automatizados com PHPUnit** , assegurando a confiabilidade das funcionalidades implementadas.
+
+Com uma arquitetura bem definida e modular, o código se mantém limpo, reutilizável e de fácil manutenção. Este desafio proporcionou uma excelente oportunidade para demonstrar habilidades técnicas e reafirmar a importância de seguir padrões no desenvolvimento de software.
+
+🚀 **Pronto para expandir!** Este projeto pode ser facilmente escalado e aprimorado com novas funcionalidades, garantindo sua evolução conforme as necessidades do usuário.
+
+Caso tenha dúvidas ou sugestões, fique à vontade para contribuir! 🤝
