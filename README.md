@@ -100,6 +100,18 @@ Route::resource('tarefas', TarefasCrudController::class);
 * `PUT /api/tarefas/{id}` → Atualiza uma tarefa
 * `DELETE /api/tarefas/{id}` → Exclui uma tarefa
 
+#### **Controle de Endereços (EnderecosController)**
+
+```php
+Route::controller(EnderecosController::class)->prefix('enderecos')->middleware('token')->group(function () {
+    Route::get('/', 'consultar');
+    Route::post('/atualizar', 'atualizar');
+});
+```
+
+* `GET /api/enderecos/` → Recupera o endereço do usuário logado
+* `POST /api/enderecos/atualizar/` → Registra ou atualiza o endereço do usuário logado
+
 ### 🔹 **Documentação da API**
 
 Todas as rotas foram documentadas com **Postman** e  **Swagger** . A documentação está acessível via:
