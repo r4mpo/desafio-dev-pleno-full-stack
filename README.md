@@ -135,6 +135,27 @@ php artisan test
 
 ## **📌 Front-End**
 
+### Documentação API - Swagger
+
+Documentação completa da API pelo Swagger, com informações sobre cada uma das rotas e proteção por autenticação:
+
+![Documentação da API](logs/pages/swagger.png)
+
+### Login e Registro
+
+Interface de registro e autenticação de usuários:
+
+![Cadastro e Login de Usuários](logs/pages/usuários/login.png)
+
+![Cadastro e Login de Usuários](logs/pages/usuários/registrar.png)
+
+### Tarefas
+
+Interações demonstradas na interface de gestão das tarefas, onde pode-se visualizar dados, cadastrar novas informações, atualizar, excluir e alterar o status de uma atividade. Confira a seguir:
+
+![Visualizar e Adicionar Tarefas](logs/pages/tarefas/visualizar_adicionar.gif)
+
+![Editar, excluir e mudar status](logs/pages/tarefas/editar_excluir_mudar_status.gif)
 
 ---
 
