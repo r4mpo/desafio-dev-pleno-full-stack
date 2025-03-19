@@ -50,7 +50,7 @@ O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por m
 
 ### 📊 **Migração de Tabelas**
 
-![Migração de Tabelas](logs/documentation/1741992928335.png)[
+![Migração de Tabelas](logs/documentation/1741992928335.png)
 
 ### 📋 **Estrutura das Tabelas**
 
