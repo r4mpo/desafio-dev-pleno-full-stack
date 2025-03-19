@@ -36,6 +36,10 @@ O desenvolvimento seguiu boas práticas de arquitetura, utilizando o  **SOLID** 
 
 * ViaCEP (consulta de endereços pelo CEP)
 
+## **📌 Fluxograma de Rotas Principais**
+
+![Fluxograma de Rotas](logs/flow/api_routes_flowchart.png)
+
 ## **📌 Banco de Dados**
 
 O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por meio de  **migrations nativas do Laravel** . Isso garante consistência entre as tabelas e os modelos da aplicação.
@@ -46,7 +50,7 @@ O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por m
 
 ### 📊 **Migração de Tabelas**
 
-![Migração de Tabelas](logs/documentation/1741992928334.png)
+![Migração de Tabelas](logs/documentation/1741992928335.png)[
 
 ### 📋 **Estrutura das Tabelas**
 
@@ -58,7 +62,11 @@ O projeto utiliza **PostgreSQL** e toda a estrutura do banco é gerenciada por m
 
 ![Tabela de Usuários](logs/documentation/1741993397962.png)
 
-## **📌 Back-End/API**
+#### **Endereços**
+
+![Migração de Tabelas](logs/documentation/1742005106986.png)
+
+## **📌 Back-End**
 
 O backend da aplicação segue os princípios  **SOLID** , garantindo um código limpo, modular e de fácil manutenção. As rotas são protegidas por autenticação JWT e documentadas com **Postman** e  **Swagger** . O padrão RESTful foi seguido para garantir uma API organizada e previsível.
 
@@ -97,7 +105,7 @@ Route::resource('tarefas', TarefasCrudController::class);
 Todas as rotas foram documentadas com **Postman** e  **Swagger** . A documentação está acessível via:
 
 * **Swagger UI:** `GET /api/documentation`
-* **Coleção Postman:** [Link para a coleção](http://localhost:8000/api/documentation) *(após instalação de projeto, conferir em ambiente local)*
+* **Coleção Postman:** collection\API Laravel - Gerenciamento Tarefas.postman_collection.json
 
 ### 🔹 **Princípios SOLID e Estrutura do Código**
 
@@ -124,6 +132,9 @@ php artisan test
 ```
 
 ![1742005106985](logs/documentation/1742005106985.png)
+
+## **📌 Front-End**
+
 
 ---
 
